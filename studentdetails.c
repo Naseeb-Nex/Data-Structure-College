@@ -1,3 +1,7 @@
+// The details of students(number, name total-mark) are to be
+// stored in a linked list.Write functions for the following operations:
+// Insert, Delete, Search, Display, the resultant list after every operation
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -12,7 +16,7 @@ struct node
 struct node *head = NULL;
 void display();
 void insert();
-void delete();
+void delete ();
 void search();
 int main()
 {
@@ -94,18 +98,27 @@ void delete ()
 
         prev = malloc(sizeof(struct node));
         curr = malloc(sizeof(struct node));
-        prev = curr = head;
-        while ((curr->next != NULL) && (curr->number != no) )
+        if (head->next == NULL && head->number == no)
         {
-            printf("1");
-            prev = curr;
-            curr = curr->next;
+            printf("\n Roll no %d is deleted From the list", head->number);
+            head = NULL;
         }
-        if((curr->next == NULL) && (curr->number != no))
-          printf("\nStudent Not Found!!\n");
-        else{
-            printf("\n Roll no %d is deleted From the list", curr->number);
-            prev->next = curr->next;
+        else
+        {
+
+            prev = curr = head;
+            while ((curr->next != NULL) && (curr->number != no))
+            {
+                prev = curr;
+                curr = curr->next;
+            }
+            if ((curr->next == NULL) && (curr->number != no))
+                printf("\nStudent Not Found!!\n");
+            else
+            {
+                printf("\n Roll no %d is deleted From the list", curr->number);
+                prev->next = curr->next;
+            }
         }
     }
 }
